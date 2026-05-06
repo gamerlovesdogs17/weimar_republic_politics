@@ -4,73 +4,67 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Weimar Politics Atlas</title>
-  <meta name="description" content="Interactive guide to Weimar Republic parties, elections, coalitions, and democratic breakdown." />
+  <meta name="description" content="Interactive guide to Weimar Republic elections, parties, coalitions, maps, governments, and alt-history scenarios." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="grain"></div>
+  <div class="noise"></div>
   <header class="hero" id="top">
     <nav class="nav">
       <a class="brand" href="#top"><span class="brand-mark">W</span><span>Weimar Politics Atlas</span></a>
       <div class="nav-links">
         <a href="#elections">Elections</a>
+        <a href="#map">Map</a>
         <a href="#coalitions">Coalitions</a>
+        <a href="#charts">Charts</a>
         <a href="#parties">Parties</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#sources">Sources</a>
+        <a href="#governments">Governments</a>
+        <a href="#sandbox">What‑ifs</a>
       </div>
     </nav>
 
     <section class="hero-grid">
-      <div>
+      <div class="hero-copy-block">
         <p class="eyebrow">Germany • 1919–1933</p>
-        <h1>The parliament that could not hold.</h1>
-        <p class="hero-copy">A visual, interactive guide to Weimar politics: party blocs, election results, coalition math, institutional stresses, and the shift from democratic majority to anti-system obstruction.</p>
+        <h1>Weimar politics as an interactive republic simulator.</h1>
+        <p class="hero-copy">Explore elections, regional political geography, party platforms, cabinet history, coalition math, and alternate-history paths through Germany’s first parliamentary democracy.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#elections">Explore elections</a>
-          <a class="btn ghost" href="#coalitions">Build coalitions</a>
+          <a class="btn primary" href="#elections">Open election explorer</a>
+          <a class="btn ghost" href="#sandbox">Try a what‑if</a>
         </div>
       </div>
-      <div class="hero-card">
-        <div class="card-topline"><span>System stress dashboard</span><span id="heroYear">1919</span></div>
-        <div class="stress-ring" aria-label="Republic stress indicator">
-          <div class="ring-inner"><span id="stressNumber">Low</span><small>democratic strain</small></div>
-        </div>
+      <aside class="hero-card glass">
+        <div class="card-topline"><span>System stress</span><span id="heroYear">1919</span></div>
+        <div class="stress-ring" aria-label="Republic stress indicator"><div class="ring-inner"><span id="stressNumber">Low</span><small>democratic strain</small></div></div>
         <div class="metric-row">
           <div><b id="heroSeats">421</b><span>Total seats</span></div>
           <div><b id="heroTurnout">83.0%</b><span>Turnout</span></div>
           <div><b id="heroMajority">211</b><span>Majority</span></div>
         </div>
-      </div>
+      </aside>
     </section>
   </header>
 
   <main>
     <section class="section intro-panel">
-      <div class="intro-card wide">
-        <h2>How to read Weimar politics</h2>
-        <p>The Weimar Republic used proportional representation, which gave parties seats close to their vote share and allowed many parties into the Reichstag. That made representation broad but coalition-building fragile. This project treats each election as a playable parliament: choose a year, inspect the parties, then test whether a coalition can govern.</p>
-      </div>
-      <div class="intro-card">
-        <h3>Core tension</h3>
-        <p>Republican parties needed compromise; anti-republican parties could win seats while opposing the system itself.</p>
-      </div>
-      <div class="intro-card">
-        <h3>Turning point</h3>
-        <p>After 1930, presidential cabinets and emergency decrees increasingly replaced stable parliamentary government.</p>
-      </div>
+      <article class="intro-card wide">
+        <h2>What this site does</h2>
+        <p>This is a GitHub Pages-ready visual atlas. Pick an election, watch the party balance change, hover over a regional map, build coalitions, study the cabinets, compare long-run charts, and test alternate histories with vote swings and institutional choices.</p>
+      </article>
+      <article class="intro-card"><h3>Proportional politics</h3><p>Representation was broad, but fractured parliaments made majority cabinets difficult.</p></article>
+      <article class="intro-card"><h3>Anti-system pressure</h3><p>Parties could gain seats while rejecting the republic’s legitimacy or democratic norms.</p></article>
+      <article class="intro-card"><h3>Emergency rule</h3><p>After 1930, presidential cabinets and decree politics increasingly replaced Reichstag majorities.</p></article>
     </section>
 
     <section class="section" id="elections">
       <div class="section-heading">
         <p class="eyebrow">Election explorer</p>
         <h2>Scroll through every national Weimar election.</h2>
-        <p>Use the bottom scrubber to move from 1919 to 1933. The chart, winner notes, and coalition builder update instantly.</p>
+        <p>Use the bottom scrubber to move from the 1919 National Assembly election to the last contested election in March 1933.</p>
       </div>
-
       <div class="election-shell">
         <aside class="election-summary glass">
           <div class="date-pill" id="electionDate">19 January 1919</div>
@@ -84,7 +78,6 @@
           </div>
           <div class="note-box" id="electionNote"></div>
         </aside>
-
         <section class="results-panel glass">
           <div class="panel-toolbar">
             <h3>Seat and vote result</h3>
@@ -97,7 +90,6 @@
           <div class="chart" id="chart"></div>
         </section>
       </div>
-
       <div class="scrubber glass">
         <div class="scrubber-labels"><span>1919</span><span id="scrubLabel">19 Jan 1919</span><span>1933</span></div>
         <input type="range" min="0" max="8" value="0" id="electionRange" aria-label="Election selector" />
@@ -105,74 +97,135 @@
       </div>
     </section>
 
+    <section class="section" id="map">
+      <div class="section-heading">
+        <p class="eyebrow">Political geography</p>
+        <h2>Regional map for the selected election.</h2>
+        <p>Hover each region to see its political tendency, parties with local strength, and how the election affected the geography of the republic.</p>
+      </div>
+      <div class="map-grid">
+        <div class="map-panel glass">
+          <div class="panel-toolbar"><h3 id="mapTitle">1919 regional politics</h3><span class="map-note">Stylized regions, not exact borders</span></div>
+          <svg id="weimarMap" viewBox="0 0 760 760" role="img" aria-label="Stylized map of Weimar Germany regions"></svg>
+          <div class="legend" id="mapLegend"></div>
+        </div>
+        <aside class="map-info glass" id="mapInfo">
+          <h3>Hover a region</h3>
+          <p>Regional notes will appear here. The color shows the leading political family in that region for the selected election.</p>
+        </aside>
+      </div>
+    </section>
+
     <section class="section" id="coalitions">
       <div class="section-heading">
         <p class="eyebrow">Coalition explorer</p>
         <h2>Can you build a Reichstag majority?</h2>
-        <p>Select parties for the currently chosen election. The tool calculates seats, majority status, ideological spread, and a rough plausibility note.</p>
+        <p>Select parties for the currently chosen election. The tool calculates seats, majority status, ideological spread, and a plausibility note.</p>
       </div>
-
       <div class="coalition-grid">
         <div class="coalition-builder glass">
-          <div class="builder-head">
-            <h3 id="coalitionElection">1919 coalition math</h3>
-            <button class="btn small" id="clearCoalition">Clear</button>
-          </div>
+          <div class="builder-head"><h3 id="coalitionElection">1919 coalition math</h3><button class="btn small" id="clearCoalition">Clear</button></div>
           <div class="party-checks" id="partyChecks"></div>
         </div>
         <div class="coalition-output glass">
-          <div class="coalition-meter">
-            <div class="meter-fill" id="coalitionFill"></div>
-            <div class="majority-line" id="majorityLine"></div>
-          </div>
+          <div class="coalition-meter"><div class="meter-fill" id="coalitionFill"></div><div class="majority-line" id="majorityLine"></div></div>
           <div class="coalition-numbers">
             <div><span>Selected seats</span><b id="selectedSeats">0</b></div>
             <div><span>Needed</span><b id="neededSeats">211</b></div>
             <div><span>Status</span><b id="coalitionStatus">No coalition</b></div>
           </div>
           <div class="verdict" id="coalitionVerdict">Choose parties to test combinations.</div>
-          <div class="preset-wrap">
-            <h4>Preset experiments</h4>
-            <div class="preset-buttons" id="presetButtons"></div>
-          </div>
+          <div class="preset-wrap"><h4>Preset experiments</h4><div class="preset-buttons" id="presetButtons"></div></div>
         </div>
       </div>
+    </section>
+
+    <section class="section" id="charts">
+      <div class="section-heading">
+        <p class="eyebrow">Charts and trends</p>
+        <h2>See the republic’s party system change over time.</h2>
+        <p>These charts track party vote share, anti-system seat power, cabinet support, turnout, and democratic-fragmentation pressure.</p>
+      </div>
+      <div class="chart-grid">
+        <article class="glass trend-card"><div class="panel-toolbar"><h3>Party vote-share trend</h3><select id="trendParty"></select></div><canvas id="partyTrend" width="900" height="360"></canvas></article>
+        <article class="glass trend-card"><h3>Anti-system seat share</h3><canvas id="antiSystemTrend" width="900" height="360"></canvas></article>
+        <article class="glass trend-card"><h3>Turnout and cabinet stress</h3><canvas id="turnoutTrend" width="900" height="360"></canvas></article>
+        <article class="glass trend-card"><h3>Bloc comparison by election</h3><div id="blocBars" class="bloc-bars"></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="depression">
+      <div class="section-heading">
+        <p class="eyebrow">Great Depression politics</p>
+        <h2>What did each party propose?</h2>
+        <p>The depression did not just reduce incomes; it shattered coalition discipline. Parties disagreed over austerity, public works, wages, reparations, capitalism, and whether democracy itself should survive.</p>
+      </div>
+      <div class="policy-grid" id="policyGrid"></div>
     </section>
 
     <section class="section" id="parties">
       <div class="section-heading">
         <p class="eyebrow">Party system</p>
         <h2>Major parties and what they represented.</h2>
-        <p>These cards summarize ideological position, social base, relationship to the republic, and coalition behavior.</p>
+        <p>Each card summarizes ideology, social base, coalition role, stance toward the republic, and depression-era policy line.</p>
       </div>
       <div class="party-grid" id="partyGrid"></div>
     </section>
 
-    <section class="section crisis-section" id="timeline">
+    <section class="section" id="governments">
       <div class="section-heading">
-        <p class="eyebrow">Political weather</p>
-        <h2>From founding coalition to emergency rule.</h2>
+        <p class="eyebrow">Government history</p>
+        <h2>Every Weimar government at a glance.</h2>
+        <p>Track the cabinet churn from the founding coalition through presidential cabinets and Hitler’s appointment.</p>
       </div>
+      <div class="government-layout">
+        <div class="glass government-table-wrap"><table class="government-table"><thead><tr><th>Government</th><th>Dates</th><th>Chancellor</th><th>Parties / basis</th><th>Notes</th></tr></thead><tbody id="governmentRows"></tbody></table></div>
+        <aside class="glass government-detail" id="governmentDetail"><h3>Select a government</h3><p>Click a row to view context, coalition logic, and why the cabinet mattered.</p></aside>
+      </div>
+    </section>
+
+    <section class="section crisis-section" id="timeline">
+      <div class="section-heading"><p class="eyebrow">Political weather</p><h2>From founding coalition to emergency rule.</h2></div>
       <div class="timeline" id="timelineList"></div>
     </section>
 
-    <section class="section sources" id="sources">
+    <section class="section" id="sandbox">
       <div class="section-heading">
-        <p class="eyebrow">Project notes</p>
-        <h2>Data and interpretation.</h2>
+        <p class="eyebrow">Alt-history lab</p>
+        <h2>Create your own Weimar what‑if.</h2>
+        <p>Start from any election, change economic and institutional conditions, then see how seats and coalitions might shift. This is a simplified teaching model, not a prediction engine.</p>
       </div>
+      <div class="sandbox-grid">
+        <div class="glass sandbox-controls">
+          <label>Base election <select id="sandboxElection"></select></label>
+          <label>Depression severity <input type="range" id="depressionSlider" min="-5" max="5" value="0"><span id="depressionVal">0</span></label>
+          <label>Republican compromise <input type="range" id="compromiseSlider" min="-5" max="5" value="0"><span id="compromiseVal">0</span></label>
+          <label>Presidential decree reliance <input type="range" id="decreeSlider" min="-5" max="5" value="0"><span id="decreeVal">0</span></label>
+          <label>Nationalist mobilization <input type="range" id="nationalistSlider" min="-5" max="5" value="0"><span id="nationalistVal">0</span></label>
+          <label>Left unity <input type="range" id="leftUnitySlider" min="-5" max="5" value="0"><span id="leftUnityVal">0</span></label>
+          <button class="btn primary" id="saveScenario">Save scenario card</button>
+        </div>
+        <div class="glass sandbox-output">
+          <div class="panel-toolbar"><h3>Simulated result</h3><span id="sandboxMajority"></span></div>
+          <div class="stacked-bar" id="sandboxStack"></div>
+          <div id="sandboxChart" class="chart compact"></div>
+          <div class="verdict" id="sandboxNarrative"></div>
+        </div>
+      </div>
+      <div class="scenario-board" id="scenarioBoard"></div>
+    </section>
+
+    <section class="section sources" id="sources">
+      <div class="section-heading"><p class="eyebrow">Project notes</p><h2>Data and interpretation.</h2></div>
       <div class="source-card glass">
-        <p>Election seat/vote data is stored in <code>app.js</code>. Interpretive notes use a cautious historical framing: coalition plausibility is a teaching model, not a formal political-science forecast.</p>
-        <p>Sources used while building: German Bundestag historical pages on Weimar parliamentarism and parties, USHMM overview of the Weimar Republic, and compiled Reichstag election tables.</p>
+        <p>Election data, region notes, party summaries, and government notes are stored directly in <code>app.js</code>. Coalition and alt-history outputs are interpretive teaching tools, not formal historical forecasts.</p>
+        <p>Suggested sources: German Bundestag historical exhibition on Weimar elections, USHMM’s Weimar Republic and Article 48 entries, and standard compiled Reichstag election tables. Full source notes are in <code>README.md</code>.</p>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>Weimar Politics Atlas • Static GitHub Pages project</p>
-    <a href="#top">Back to top ↑</a>
-  </footer>
-
+  <footer><p>Weimar Politics Atlas • Static GitHub Pages project</p><a href="#top">Back to top ↑</a></footer>
+  <div class="tooltip" id="tooltip"></div>
   <script src="app.js"></script>
 </body>
 </html>
